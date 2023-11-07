@@ -1,2 +1,2 @@
-# Flutter_Basic
-Basic projects for understanding the flutter framework.
+# Flutter_Basic_Calculator_App
+Basic calculator project for understanding the flutter framework.
