@@ -25,7 +25,7 @@ class _HomeState extends State<Home> {
             Expanded(
               child: SingleChildScrollView(
                 child: Container(
-                  constraints: const BoxConstraints(minHeight: 300),
+                  constraints: const BoxConstraints(minHeight: 350),
                   alignment: Alignment.bottomRight,
                     padding: const EdgeInsets.all(16),
                     child: Text(
@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
               children: Btn.buttonValues
                   .map(
                       (value) => SizedBox(
-                          height: screenSize.height/9,
+                          height: screenSize.height/10,
                           width:
                             value==Btn.calculate?screenSize.width/2:
                             screenSize.width/4,
