@@ -24,7 +24,7 @@ class _LoadScreenState extends State<LoadScreen> {
               style: TextStyle(
                 color: Colors.red[900],
                 fontWeight: FontWeight.bold,
-                fontSize: 21,
+                fontSize: MediaQuery.of(context).size.width*0.06,
               ),
               textAlign: TextAlign.center,
             ),
@@ -32,7 +32,7 @@ class _LoadScreenState extends State<LoadScreen> {
                 onPressed:(){
                   Navigator.pushNamed(context, '/home');
                 },
-                child: Text("Go",style: TextStyle(fontSize: 18),),
+                child: Text("Go",style: TextStyle(fontSize: 19),),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.black45,
                 foregroundColor: Colors.white,
