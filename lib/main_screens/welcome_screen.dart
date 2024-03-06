@@ -364,7 +364,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
 
@@ -416,8 +415,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 },
               ),
               Positioned(
-                bottom: MediaQuery.of(context).size.height * 0.14,
-                left: MediaQuery.of(context).size.width * 0.30,
+                bottom: MediaQuery.of(context).size.height * 0.145,
+                left: MediaQuery.of(context).size.width * 0.29,
                 child: OutlinedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/seller_section');

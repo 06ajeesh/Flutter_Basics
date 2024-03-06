@@ -20,7 +20,7 @@ class WishlistModel extends StatelessWidget {
       padding: const EdgeInsets.all(5.0),
       child: Card(
         child: SizedBox(
-          height: 100,
+          height: 110,
           child: Row(
             children: [
               SizedBox(
@@ -61,23 +61,26 @@ class WishlistModel extends StatelessWidget {
                             children: [
                               IconButton(
                                 onPressed: () {
-                                  context.read<Wish>().removeItem(product);
+                                  Provider.of<Wish>(context, listen: false)
+                                      .removeItem(product);
                                 },
                                 icon: const Icon(Icons.delete_forever),
                               ),
                               const SizedBox(
                                 width: 10,
                               ),
-                              context.watch<Cart>().getItems.firstWhereOrNull(
-                                          (element) =>
-                                              element.documentId ==
-                                              product.documentId) !=
-                                      Null
+                              Provider.of<Cart>(context, listen: false)
+                                              .getItems
+                                              .firstWhereOrNull((element) =>
+                                                  element.documentId ==
+                                                  product.documentId) !=
+                                          null ||
+                                      product.qty == 0
                                   ? const SizedBox()
                                   : IconButton(
                                       onPressed: () {
-                                        context
-                                                    .read<Cart>()
+                                        Provider.of<Cart>(context,
+                                                        listen: false)
                                                     .getItems
                                                     .firstWhereOrNull(
                                                         (element) =>
@@ -85,17 +88,22 @@ class WishlistModel extends StatelessWidget {
                                                                 .documentId ==
                                                             product
                                                                 .documentId) !=
-                                                Null
+                                                null
                                             ? print('in cart')
-                                            : context.read<Cart>().addItem(
-                                                  product.name,
-                                                  product.price,
-                                                  1,
-                                                  product.qntty,
-                                                  product.imagesUrl,
-                                                  product.documentId,
-                                                  product.suppId,
-                                                );
+                                            : Provider.of<Cart>(context,
+                                                    listen: false)
+                                                .addItem(
+                                                product.name,
+                                                product.price,
+                                                1,
+                                                product.qntty,
+                                                product.imagesUrl,
+                                                product.documentId,
+                                                product.suppId,
+                                              );
+                                        Provider.of<Wish>(context,
+                                                listen: false)
+                                            .removeItem(product);
                                       },
                                       icon: const Icon(Icons.add_shopping_cart),
                                     ),

@@ -60,28 +60,18 @@ class _StoresScreenState extends State<StoresScreen> {
                                   height: 120,
                                   width: 120,
                                   child: Image(
-                                      image: AssetImage(
-                                          'images/inapp/stores.jpg')),
+                                      image:
+                                          AssetImage('images/inapp/store.jpg')),
                                 ),
                                 Positioned(
-                                  top: 22,
-                                  bottom: 20,
-                                  left: 10,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Colors.white,
-                                        width: 1.5,
-                                      ),
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(3),
-                                      ),
-                                    ),
-                                    height: 80,
-                                    width: 100,
+                                  bottom: 28,
+                                  left: 15,
+                                  child: SizedBox(
+                                    height: 46,
+                                    width: 91,
                                     child: Image.network(
                                       snapshot.data!.docs[index]['storeLogo'],
-                                      fit: BoxFit.fill,
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),

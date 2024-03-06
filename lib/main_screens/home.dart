@@ -4,7 +4,9 @@ import 'package:multi_store_app2/galleries/women_gallery.dart';
 
 import '../galleries/accessories_gallery.dart';
 import '../galleries/bags_gallery.dart';
+import '../galleries/beauty_gallery.dart';
 import '../galleries/electronics_gallery.dart';
+import '../galleries/hoemgarden_gallery.dart';
 import '../galleries/kids_gallery.dart';
 import '../galleries/shoes_galley.dart';
 import '../widgets/fake_search.dart';
@@ -91,13 +93,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   BagsGalleryScreen(),
                   ElectronicsGalleryScreen(),
                   AccessoriesGalleryScreen(),
-                  Center(
-                    child: Text('Home & Garden Screen'),
-                  ),
+                  HomegardenGalleryScreen(),
                   KidsGalleryScreen(),
-                  Center(
-                    child: Text('Beauty Screen'),
-                  ),
+                  BeautyGalleryScreen(),
                 ],
               ),
       ),

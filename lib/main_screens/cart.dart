@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:multi_store_app2/widgets/alert_dialog.dart';
 import 'package:multi_store_app2/widgets/appbar_widgets.dart';
 import 'package:provider/provider.dart';
+import '../minor_screens/place_order.dart';
 import '../models/cart_model.dart';
 import '../providers/cart_provider.dart';
 import '../widgets/yellow_button.dart';
@@ -18,8 +19,9 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
+    double total = Provider.of<Cart>(context).totalPrice;
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: Colors.grey.shade300,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
@@ -53,11 +55,14 @@ class _CartScreenState extends State<CartScreen> {
                 )
         ],
       ),
-      body: context.watch<Cart>().getItems.isNotEmpty
+      body: Provider.of<Cart>(context).getItems.isNotEmpty
           ? const CartItems()
           : const EmptyCart(),
       bottomSheet: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8,
+          vertical: 15,
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -68,7 +73,7 @@ class _CartScreenState extends State<CartScreen> {
                   style: TextStyle(fontSize: 18),
                 ),
                 Text(
-                  context.watch<Cart>().totalPrice.toStringAsFixed(2),
+                  total.toStringAsFixed(2),
                   style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -76,7 +81,21 @@ class _CartScreenState extends State<CartScreen> {
                 ),
               ],
             ),
-            YellowButton(label: 'Check Out', width: 0.35, onPressed: () {}),
+            YellowButton(
+              fontweigh: FontWeight.w500,
+              label: 'Check Out',
+              width: 0.35,
+              onPressed: total == 0.00
+                  ? () {}
+                  : () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const PlaceOrderScreen(),
+                        ),
+                      );
+                    },
+            ),
           ],
         ),
       ),

@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 class YellowButton extends StatelessWidget {
@@ -11,25 +12,28 @@ class YellowButton extends StatelessWidget {
     required this.width,
     required this.onPressed,
     this.customFont = false,
+    this.colour = Colors.yellow,
+    this.fontweigh = FontWeight.normal,
   });
   final bool customFont;
+  final FontWeight fontweigh;
+  final Color colour;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 30,
       width: MediaQuery.of(context).size.width * width,
-      decoration: BoxDecoration(
-          color: Colors.yellow, borderRadius: BorderRadius.circular(10)),
+      decoration:
+          BoxDecoration(color: colour, borderRadius: BorderRadius.circular(10)),
       child: MaterialButton(
         onPressed: onPressed,
         child: Center(
             child: Text(
           label,
           style: TextStyle(
-            fontFamily: customFont == true ? 'Akaya' : 'DefaultFont',
-            fontWeight:
-                customFont == true ? FontWeight.bold : FontWeight.normal,
+            fontFamily: customFont == true ? 'Acme' : 'DefaultFont',
+            fontWeight: fontweigh,
           ),
         )),
       ),

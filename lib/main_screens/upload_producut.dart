@@ -140,7 +140,7 @@ class _UploadProductScreenState extends State<UploadProductScreen> {
         'maincateg': mainCategValue,
         'subcateg': subCategValue,
         'price': price,
-        'instance': quantity,
+        'instock': quantity,
         'prodname': productName,
         'proddesc': productDescription,
         'sid': FirebaseAuth.instance.currentUser!.uid,

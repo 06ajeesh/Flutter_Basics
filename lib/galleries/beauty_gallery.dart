@@ -15,7 +15,7 @@ class BeautyGalleryScreen extends StatefulWidget {
 class _BeautyGalleryScreenState extends State<BeautyGalleryScreen> {
   final Stream<QuerySnapshot> _productsStream = FirebaseFirestore.instance
       .collection('products')
-      .where('maincateg', isEqualTo: 'men')
+      .where('maincateg', isEqualTo: 'beauty')
       .snapshots();
 
   @override

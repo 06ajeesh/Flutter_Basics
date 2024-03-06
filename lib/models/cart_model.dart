@@ -23,8 +23,9 @@ class CartModel extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: Card(
+        color: Colors.white,
         child: SizedBox(
-          height: 100,
+          height: 110,
           child: Row(
             children: [
               SizedBox(
@@ -76,15 +77,24 @@ class CartModel extends StatelessWidget {
                                             context: context,
                                             builder: (context) {
                                               return CupertinoActionSheet(
-                                                title:
-                                                    const Text('Remove Item'),
-                                                message:
-                                                    const Text('Are You Sure'),
+                                                title: const Text(
+                                                  'Remove Item',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.red,
+                                                  ),
+                                                ),
+                                                message: const Text(
+                                                  'Are You Sure',
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
                                                 actions: [
                                                   CupertinoActionSheetAction(
                                                     onPressed: () async {
                                                       context
-                                                                  .read<Wish>()
+                                                                  .watch<Wish>()
                                                                   .getWishItems
                                                                   .firstWhereOrNull(
                                                                       (element) =>
@@ -121,7 +131,7 @@ class CartModel extends StatelessWidget {
                                                   CupertinoActionSheetAction(
                                                     onPressed: () {
                                                       context
-                                                          .read<Cart>()
+                                                          .watch<Cart>()
                                                           .removeItem(product);
                                                       Navigator.pop(context);
                                                     },

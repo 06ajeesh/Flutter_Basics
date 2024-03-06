@@ -16,7 +16,7 @@ class HomegardenGalleryScreen extends StatefulWidget {
 class _HomegardenGalleryScreenState extends State<HomegardenGalleryScreen> {
   final Stream<QuerySnapshot> _productsStream = FirebaseFirestore.instance
       .collection('products')
-      .where('maincateg', isEqualTo: 'men')
+      .where('maincateg', isEqualTo: 'home & garden')
       .snapshots();
 
   @override

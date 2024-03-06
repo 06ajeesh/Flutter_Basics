@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -6,7 +7,7 @@ import '../minor_screens/product_details.dart';
 import '../providers/wish_provider.dart';
 
 class ProductModel extends StatefulWidget {
-  final dynamic products;
+  final QueryDocumentSnapshot products;
   const ProductModel({
     super.key,
     required this.products,
@@ -102,32 +103,40 @@ class _ProductModelState extends State<ProductModel> {
                               )
                             : IconButton(
                                 onPressed: () {
-                                  var existingItemWishlist = context
-                                      .read<Wish>()
-                                      .getWishItems
-                                      .firstWhereOrNull((product) =>
-                                          product.documentId ==
-                                          widget.products['proid']);
+                                  var existingItemWishlist =
+                                      Provider.of<Wish>(context, listen: false)
+                                          .getWishItems
+                                          .firstWhereOrNull(
+                                            (product) =>
+                                                product.documentId ==
+                                                widget.products['proid'],
+                                          );
 
                                   existingItemWishlist != null
-                                      ? context
-                                          .read<Wish>()
-                                          .removeThis(widget.products['proid'])
-                                      : context.read<Wish>().addWishItem(
+                                      ? Provider.of<Wish>(context,
+                                              listen: false)
+                                          .removeThis(
+                                          widget.products['proid'],
+                                        )
+                                      : Provider.of<Wish>(context,
+                                              listen: false)
+                                          .addWishItem(
                                           widget.products['prodname'],
                                           widget.products['price'],
                                           1,
-                                          widget.products['instance'],
+                                          widget.products['instock'],
                                           widget.products['prodimages'],
                                           widget.products['proid'],
-                                          widget.products['sid']);
+                                          widget.products['sid'],
+                                        );
                                 },
-                                icon: context
-                                            .watch()<Wish>()
+                                icon: Provider.of<Wish>(context, listen: true)
                                             .getWishItems
-                                            .firstWhereOrNull((product) =>
-                                                product.documentId ==
-                                                widget.products['proid']) !=
+                                            .firstWhereOrNull(
+                                              (product) =>
+                                                  product.documentId ==
+                                                  widget.products['proid'],
+                                            ) !=
                                         null
                                     ? const Icon(
                                         Icons.favorite,
