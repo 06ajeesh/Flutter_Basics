@@ -24,11 +24,11 @@ class Statics extends StatelessWidget {
 
         num itemCount = 0;
         for (var item in snapshot.data!.docs) {
-          itemCount += item['qty'];
+          itemCount += item['orderqty'];
         }
         double totalPrice = 0.0;
         for (var item in snapshot.data!.docs) {
-          totalPrice += item['qty'] * item['price'];
+          totalPrice += item['orderqty'] * item['orderPrice'];
         }
 
         return Scaffold(
@@ -46,14 +46,17 @@ class Statics extends StatelessWidget {
                 StaticsModel(
                   label: 'Sold out',
                   value: snapshot.data!.docs.length,
+                  decimal: 0,
                 ),
                 StaticsModel(
                   label: "item count",
                   value: itemCount,
+                  decimal: 0,
                 ),
                 StaticsModel(
                   label: "total balance",
                   value: totalPrice,
+                  decimal: 2,
                 ),
                 const SizedBox(
                   height: 20,
@@ -69,9 +72,11 @@ class Statics extends StatelessWidget {
 
 class StaticsModel extends StatelessWidget {
   final String label;
+  final int decimal;
   final dynamic value;
   const StaticsModel({
     super.key,
+    required this.decimal,
     required this.label,
     required this.value,
   });
@@ -110,17 +115,9 @@ class StaticsModel extends StatelessWidget {
               bottomRight: Radius.circular(15),
             ),
           ),
-          child: Center(
-            child: Text(
-              value.toString(),
-              style: const TextStyle(
-                color: Colors.pink,
-                letterSpacing: 2,
-                fontSize: 40,
-                fontFamily: 'Acme',
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+          child: AnimatedCounter(
+            count: value,
+            decimal: decimal,
           ),
         ),
       ],
@@ -129,7 +126,10 @@ class StaticsModel extends StatelessWidget {
 }
 
 class AnimatedCounter extends StatefulWidget {
-  const AnimatedCounter({super.key});
+  final dynamic count;
+  final int decimal;
+  const AnimatedCounter(
+      {super.key, required this.count, required this.decimal});
 
   @override
   State<AnimatedCounter> createState() => _AnimatedCounterState();
@@ -145,13 +145,31 @@ class _AnimatedCounterState extends State<AnimatedCounter>
         AnimationController(vsync: this, duration: const Duration(seconds: 2));
     _animation = _controller;
     setState(() {
-      _animation = Tween(begin: _animation.value, end: 45);
+      _animation = Tween(begin: _animation.value, end: widget.count)
+          .animate(_controller);
     });
+    _controller.forward();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(animation: _animation, builder: builder);
+    return AnimatedBuilder(
+      animation: _animation,
+      builder: (BuildContext context, Widget? child) {
+        return Center(
+          child: Text(
+            _animation.value.toStringAsFixed(widget.decimal),
+            style: const TextStyle(
+              color: Colors.pink,
+              letterSpacing: 2,
+              fontSize: 40,
+              fontFamily: 'Acme',
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        );
+      },
+    );
   }
 }
