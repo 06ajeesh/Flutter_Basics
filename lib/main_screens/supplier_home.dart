@@ -5,8 +5,6 @@ import 'package:multi_store_app2/main_screens/category.dart';
 import 'package:multi_store_app2/main_screens/home.dart';
 import 'package:multi_store_app2/main_screens/stores.dart';
 import 'package:multi_store_app2/main_screens/upload_producut.dart';
-import 'package:provider/provider.dart';
-import '../providers/cart_provider.dart';
 import 'dashboard.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:badges/badges.dart';

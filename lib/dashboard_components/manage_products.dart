@@ -11,7 +11,7 @@ class ManageProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> _productsStream = FirebaseFirestore.instance
+    final Stream<QuerySnapshot> productsStream = FirebaseFirestore.instance
         .collection('products')
         .where('sid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
         .snapshots();
@@ -24,7 +24,7 @@ class ManageProducts extends StatelessWidget {
         leading: const AppBarBackButton(),
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: _productsStream,
+        stream: productsStream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return const Text('Something went wrong');
@@ -51,7 +51,7 @@ class ManageProducts extends StatelessWidget {
           }
           return SingleChildScrollView(
             child: StaggeredGridView.countBuilder(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               crossAxisCount: 2,
               itemCount: snapshot.data!.docs.length,

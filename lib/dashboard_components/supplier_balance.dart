@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_store_app2/widgets/appbar_widgets.dart';
-import 'package:multi_store_app2/widgets/yellow_button.dart';
 
 class BalanceScreen extends StatelessWidget {
   const BalanceScreen({super.key});

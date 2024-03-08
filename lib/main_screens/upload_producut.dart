@@ -42,8 +42,8 @@ class _UploadProductScreenState extends State<UploadProductScreen> {
     'bags': bags,
   };
 
-  var mainCategValue = 'Main category';
-  var subCategValue = 'subcategory';
+  String mainCategValue = 'Main category';
+  String subCategValue = 'subcategory';
   List<String> subCategList = [];
 
   final ImagePicker _picker = ImagePicker();
@@ -153,7 +153,7 @@ class _UploadProductScreenState extends State<UploadProductScreen> {
           });
           imageFileList = [];
           mainCategValue = 'Main category';
-
+          subCategValue = 'subcategory';
           subCategList = [];
           imageUrlList = [];
         });
@@ -237,7 +237,7 @@ class _UploadProductScreenState extends State<UploadProductScreen> {
                                       ),
                                     );
                                   }).toList(),
-                                  onChanged: (value) {
+                                  onChanged: (String? value) {
                                     setState(() {
                                       mainCategValue = value!;
                                       subCategList =
@@ -262,6 +262,8 @@ class _UploadProductScreenState extends State<UploadProductScreen> {
                                   iconEnabledColor: Colors.red,
                                   dropdownColor: Colors.yellow.shade200,
                                   iconDisabledColor: Colors.black,
+                                  disabledHint:
+                                      const Text("select subcategory"),
                                   menuMaxHeight: size.height * 0.4,
                                   value: subCategValue,
                                   items: subCategList
