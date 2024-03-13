@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
@@ -37,6 +39,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var discountValue = widget.prodList['discount'];
     return Material(
       child: Material(
         child: ScaffoldMessenger(
@@ -133,22 +136,48 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         children: [
                           Row(
                             children: [
-                              const Text(
-                                'INR ',
-                                style: TextStyle(
-                                  color: Colors.red,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                              Row(
+                                children: [
+                                  const Text(
+                                    'INR ',
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  Text(
+                                    widget.prodList['price'].toStringAsFixed(2),
+                                    style: discountValue == 0
+                                        ? const TextStyle(
+                                            color: Colors.red,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w600,
+                                          )
+                                        : const TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 13,
+                                            decoration:
+                                                TextDecoration.lineThrough,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  )
+                                ],
                               ),
-                              Text(
-                                widget.prodList['price'].toStringAsFixed(2),
-                                style: const TextStyle(
-                                  color: Colors.red,
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
+                              discountValue != 0
+                                  ? Text(
+                                      widget.prodList['price']
+                                          .toStringAsFixed(2),
+                                      style: const TextStyle(
+                                        color: Colors.red,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    )
+                                  : const Text(""),
                             ],
                           ),
                           IconButton(
@@ -166,7 +195,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   : Provider.of<Wish>(context, listen: false)
                                       .addWishItem(
                                       widget.prodList['prodname'],
-                                      widget.prodList['price'],
+                                      discountValue == 0
+                                          ? widget.prodList['price']
+                                          : ((1 - (discountValue / 100)) *
+                                              widget.prodList['price']),
                                       1,
                                       widget.prodList['instock'],
                                       widget.prodList['prodimages'],
@@ -368,7 +400,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         } else {
                           Provider.of<Cart>(context, listen: false).addItem(
                             widget.prodList['prodname'],
-                            widget.prodList['price'],
+                            discountValue == 0
+                                ? widget.prodList['price']
+                                : ((1 - (discountValue / 100)) *
+                                    widget.prodList['price']),
                             1,
                             widget.prodList['instock'],
                             widget.prodList['prodimages'],

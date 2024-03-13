@@ -113,7 +113,7 @@ class SupplierOrderModel extends StatelessWidget {
                           style: TextStyle(),
                         ),
                         Text(
-                          '${order['payementStatus']}',
+                          '${order['paymentStatus']}',
                           style: const TextStyle(
                             color: Colors.purple,
                           ),

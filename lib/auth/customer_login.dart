@@ -16,6 +16,13 @@ class _CustomerLoginState extends State<CustomerLogin> {
   bool passwordVisible = true;
   bool processing = false;
 
+  void navigate() {
+    Navigator.of(context).pushNamedAndRemoveUntil(
+      '/Customer_home',
+      (Route<dynamic> route) => false,
+    );
+  }
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
       GlobalKey<ScaffoldMessengerState>();
@@ -31,10 +38,8 @@ class _CustomerLoginState extends State<CustomerLogin> {
           password: password,
         );
         _formKey.currentState!.reset();
-        Navigator.of(context).pushNamedAndRemoveUntil(
-          '/Customer_home',
-          (Route<dynamic> route) => false,
-        );
+
+        navigate();
       } on FirebaseAuthException catch (e) {
         // print('error occured is ${e.code}');
         if (e.code == 'user-not-found') {

@@ -107,11 +107,11 @@ class CustomerOrderModel extends StatelessWidget {
                     Row(
                       children: [
                         const Text(
-                          'Payement status:',
+                          'Payment status:',
                           style: TextStyle(),
                         ),
                         Text(
-                          '${order['payementStatus']}',
+                          '${order['paymentStatus']}',
                           style: const TextStyle(
                             color: Colors.purple,
                           ),
@@ -139,14 +139,14 @@ class CustomerOrderModel extends StatelessWidget {
                           )}')
                         : const Text(' '),
                     order['deliveryStatus'] == 'delivered' &&
-                            order['orederReview'] == false
+                            order['orderReview'] == false
                         ? TextButton(
                             onPressed: () {},
                             child: const Text('Write a review'),
                           )
                         : const Text(' '),
                     order['deliveryStatus'] == 'delivered' &&
-                            order['orederReview'] == true
+                            order['orderReview'] == true
                         ? const Row(
                             children: [
                               Icon(

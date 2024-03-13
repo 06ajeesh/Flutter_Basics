@@ -16,6 +16,7 @@ class ManageProducts extends StatelessWidget {
         .where('sid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
         .snapshots();
     return Scaffold(
+      backgroundColor: Colors.grey.shade300,
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,

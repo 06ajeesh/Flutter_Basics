@@ -206,7 +206,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const PayementScreen(),
+                              builder: (context) => const PaymentScreen(),
                             ));
                       },
                       colour: Colors.lightGreen,

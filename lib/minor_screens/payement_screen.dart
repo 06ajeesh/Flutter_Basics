@@ -9,14 +9,14 @@ import 'package:uuid/uuid.dart';
 import 'package:sn_progress_dialog/sn_progress_dialog.dart';
 import '../providers/cart_provider.dart';
 
-class PayementScreen extends StatefulWidget {
-  const PayementScreen({super.key});
+class PaymentScreen extends StatefulWidget {
+  const PaymentScreen({super.key});
 
   @override
-  State<PayementScreen> createState() => _PayementScreenState();
+  State<PaymentScreen> createState() => _PaymentScreenState();
 }
 
-class _PayementScreenState extends State<PayementScreen> {
+class _PaymentScreenState extends State<PaymentScreen> {
   late String orderId;
   CollectionReference customers =
       FirebaseFirestore.instance.collection('Customers');
@@ -262,61 +262,74 @@ class _PayementScreenState extends State<PayementScreen> {
                                       width: 0.8,
                                       onPressed: () async {
                                         showProgress();
-                                        for (var item in Provider.of<Cart>(
-                                          context,
-                                          listen: true,
-                                        ).getItems) {
-                                          orderId = const Uuid().v4();
-                                          CollectionReference orderRef =
-                                              FirebaseFirestore.instance
-                                                  .collection('orders');
-                                          await orderRef.doc(orderId).set({
-                                            'cid': data['cid'],
-                                            'custName': data['name'],
-                                            'email': data['email'],
-                                            'address': data['address'],
-                                            'phone': data['phone'],
-                                            'profileImage':
-                                                data['profileimage'],
-                                            'sid': item.suppId,
-                                            'proid': item.documentId,
-                                            'orderId': orderId,
-                                            'orderName': item.name,
-                                            'orderImage': item.imagesUrl.first,
-                                            'orderqty': item.qty,
-                                            'orderPrice': item.qty * item.price,
-                                            'deliveryStatus': 'preparing',
-                                            'deliveryDate': ' 20/03/2024',
-                                            'orderDate': DateTime.now(),
-                                            'payementStatus':
-                                                'cash on delivery',
-                                            'orederReview': false,
-                                          }).whenComplete(() async {
-                                            await FirebaseFirestore.instance
-                                                .runTransaction(
-                                                    (transaction) async {
-                                              DocumentReference
-                                                  documentReference =
-                                                  FirebaseFirestore.instance
-                                                      .collection('products')
-                                                      .doc(item.documentId);
-                                              DocumentSnapshot snapshot2 =
-                                                  await transaction
-                                                      .get(documentReference);
-                                              transaction.update(
-                                                  documentReference, {
-                                                'instock':
-                                                    snapshot2['instock'] -
-                                                        item.qty
+                                        await Future.delayed(const Duration(
+                                                microseconds: 100))
+                                            .whenComplete(() {
+                                          for (var item in Provider.of<Cart>(
+                                            context,
+                                            listen: true,
+                                          ).getItems) {
+                                            orderId = const Uuid().v4();
+                                            CollectionReference orderRef =
+                                                FirebaseFirestore.instance
+                                                    .collection('orders');
+                                            orderRef.doc(orderId).set({
+                                              'cid': data['cid'],
+                                              'custName': data['name'],
+                                              'email': data['email'],
+                                              'address': data['address'],
+                                              'phone': data['phone'],
+                                              'profileImage':
+                                                  data['profileimage'],
+                                              'sid': item.suppId,
+                                              'proid': item.documentId,
+                                              'orderId': orderId,
+                                              'orderName': item.name,
+                                              'orderImage':
+                                                  item.imagesUrl.first,
+                                              'orderqty': item.qty,
+                                              'orderPrice':
+                                                  item.qty * item.price,
+                                              'deliveryStatus': 'preparing',
+                                              'deliveryDate': ' 20/03/2024',
+                                              'orderDate': DateTime.now(),
+                                              'paymentStatus':
+                                                  'cash on delivery',
+                                              'orderReview': false,
+                                            }).whenComplete(() async {
+                                              await FirebaseFirestore.instance
+                                                  .runTransaction(
+                                                      (transaction) async {
+                                                DocumentReference
+                                                    documentReference =
+                                                    FirebaseFirestore.instance
+                                                        .collection('products')
+                                                        .doc(item.documentId);
+                                                DocumentSnapshot snapshot2 =
+                                                    await transaction
+                                                        .get(documentReference);
+                                                transaction.update(
+                                                    documentReference, {
+                                                  'instock':
+                                                      snapshot2['instock'] -
+                                                          item.qty
+                                                });
                                               });
                                             });
-                                          });
-                                        }
-                                        Provider.of<Cart>(context).clearCart();
-                                        Navigator.popUntil(
-                                          context,
-                                          ModalRoute.withName('/Customer_home'),
-                                        );
+                                          }
+                                        });
+
+                                        await Future.delayed(const Duration(
+                                                microseconds: 100))
+                                            .whenComplete(() {
+                                          Provider.of<Cart>(context)
+                                              .clearCart();
+                                          Navigator.popUntil(
+                                            context,
+                                            ModalRoute.withName(
+                                                '/Customer_home'),
+                                          );
+                                        });
                                       },
                                     )
                                   ],
