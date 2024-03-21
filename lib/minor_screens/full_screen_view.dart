@@ -85,7 +85,7 @@ class _FullScreenViewState extends State<FullScreenView> {
               borderRadius: BorderRadius.circular(8),
               child: Image(
                 image: NetworkImage(widget.imagesList[index]),
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
               ),
             ),
           ),

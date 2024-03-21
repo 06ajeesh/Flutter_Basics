@@ -1,0 +1,4 @@
+const stripePublishableKey =
+    'pk_test_51OuuLfSAPjnYaobzYz18hEeCdZuJkUuo1ZAx4fQHGqlZYPDzKam3bt666sIMYJbyQSvsQqyUt2F6kY8do1cKKFJK00Ni85zdgq';
+const stripeSecretKey =
+    'sk_test_51OuuLfSAPjnYaobzslW4FU46HiDGqA9bzozGB2AJlJoDqEpEdo9BI3k3Ckp4ApT4nOKAafhLSvJ8M3mwynS3m3WG007xMkuOlI';

@@ -54,10 +54,10 @@ class _UploadProductScreenState extends State<UploadProductScreen> {
   void pickProductImages() async {
     try {
       final pickedImages = await _picker.pickMultiImage(
-        maxHeight: 300,
-        maxWidth: 300,
-        imageQuality: 85,
-      );
+          // maxHeight: 300,
+          // maxWidth: 300,
+          // imageQuality: 85,
+          );
       setState(() {
         imageFileList = pickedImages;
       });

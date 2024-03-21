@@ -1,13 +1,18 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:multi_store_app2/providers/stripe_id.dart';
 import 'package:multi_store_app2/widgets/appbar_widgets.dart';
 import 'package:multi_store_app2/widgets/yellow_button.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 import 'package:sn_progress_dialog/sn_progress_dialog.dart';
 import '../providers/cart_provider.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:http/http.dart' as http;
 
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({super.key});
@@ -338,6 +343,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             ),
                           );
                         } else if (selectedValue == 2) {
+                          makePayment();
                         } else if (selectedValue == 3) {}
                       },
                       colour: Colors.lightGreen,
@@ -354,5 +360,47 @@ class _PaymentScreenState extends State<PaymentScreen> {
         }
       },
     );
+  }
+
+  Map<String, dynamic>? paymentIntentData;
+  void makePayment() async {
+    //
+    paymentIntentData = await createPaymentIntent();
+    await Stripe.instance.initPaymentSheet(
+        paymentSheetParameters: SetupPaymentSheetParameters(
+      paymentIntentClientSecret: paymentIntentData!['client_secret'],
+      applePay: const PaymentSheetApplePay(merchantCountryCode: 'in'),
+      merchantDisplayName: 'Ajeesh',
+      googlePay: const PaymentSheetGooglePay(merchantCountryCode: 'in'),
+    ));
+    await displayPaymentSheet();
+  }
+
+  createPaymentIntent() async {
+    try {} catch (e) {
+      print(e);
+    }
+    Map<String, dynamic> body = {
+      'amount': '1200',
+      'currency': 'INR',
+      'payment_method_types[]': 'card',
+    };
+    final response = await http.post(
+        Uri.parse('https://api.stripe.com/v1/payment_intents'),
+        body: body,
+        headers: {
+          'Authorisation': 'Bearer: $stripeSecretKey',
+          'content_type': "application/x-www-form-urlencoded",
+        });
+    return jsonDecode(response.body);
+  }
+
+  displayPaymentSheet() async {
+    try {} catch (e) {
+      print(e);
+    }
+    // await Stripe.instance.initPaymentSheet(
+    // paymentSheetParameters: PresentPaymentSheetParameters(clientSecret: paymentIntentData!['client_secret'],confirmPayment: true)
+    // );
   }
 }
