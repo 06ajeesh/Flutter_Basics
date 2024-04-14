@@ -16,7 +16,7 @@ class _Seller_Sign_LogState extends State<Seller_Sign_Log> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        toolbarHeight: 90,
+        toolbarHeight: MediaQuery.of(context).size.height * 0.2,
         leading: const AppBarBackButton(buttonColor: Colors.black),
         title: const Text(
           'Supplier Section',

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
@@ -163,13 +161,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                           ),
                                   ),
                                   const SizedBox(
-                                    width: 5,
+                                    width: 4,
                                   )
                                 ],
                               ),
                               discountValue != 0
                                   ? Text(
-                                      widget.prodList['price']
+                                      ((1 - (discountValue / 100)) *
+                                              widget.prodList['price'])
                                           .toStringAsFixed(2),
                                       style: const TextStyle(
                                         color: Colors.red,
@@ -255,13 +254,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         ),
                         child: Text(
                           widget.prodList['proddesc'],
-                          textScaler: const TextScaler.linear(1.1),
+                          textScaler: const TextScaler.linear(1),
                           style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w400,
                             color: Colors.blueGrey.shade800,
                           ),
-                          textAlign: TextAlign.justify,
+                          textAlign: TextAlign.values[3],
                         ),
                       ),
                       const ProdDetailsHeader(label: ' Similar Items '),
@@ -451,9 +450,10 @@ class ProdDetailsHeader extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-                color: Colors.yellow.shade900,
-                fontSize: 20,
-                fontWeight: FontWeight.w600),
+              color: Colors.yellow.shade900,
+              fontSize: 19,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           SizedBox(
             height: 40,

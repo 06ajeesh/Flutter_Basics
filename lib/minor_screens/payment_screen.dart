@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -325,7 +323,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                         });
 
                                         await Future.delayed(const Duration(
-                                                microseconds: 100))
+                                                microseconds: 50))
                                             .whenComplete(() {
                                           Provider.of<Cart>(context)
                                               .clearCart();
@@ -362,45 +360,17 @@ class _PaymentScreenState extends State<PaymentScreen> {
     );
   }
 
-  Map<String, dynamic>? paymentIntentData;
+  // Map<String, dynamic>? paymentIntentData;
+
   void makePayment() async {
-    //
-    paymentIntentData = await createPaymentIntent();
     await Stripe.instance.initPaymentSheet(
-        paymentSheetParameters: SetupPaymentSheetParameters(
-      paymentIntentClientSecret: paymentIntentData!['client_secret'],
-      applePay: const PaymentSheetApplePay(merchantCountryCode: 'in'),
-      merchantDisplayName: 'Ajeesh',
-      googlePay: const PaymentSheetGooglePay(merchantCountryCode: 'in'),
-    ));
-    await displayPaymentSheet();
-  }
-
-  createPaymentIntent() async {
-    try {} catch (e) {
-      print(e);
-    }
-    Map<String, dynamic> body = {
-      'amount': '1200',
-      'currency': 'INR',
-      'payment_method_types[]': 'card',
-    };
-    final response = await http.post(
-        Uri.parse('https://api.stripe.com/v1/payment_intents'),
-        body: body,
-        headers: {
-          'Authorisation': 'Bearer: $stripeSecretKey',
-          'content_type': "application/x-www-form-urlencoded",
-        });
-    return jsonDecode(response.body);
-  }
-
-  displayPaymentSheet() async {
-    try {} catch (e) {
-      print(e);
-    }
-    // await Stripe.instance.initPaymentSheet(
-    // paymentSheetParameters: PresentPaymentSheetParameters(clientSecret: paymentIntentData!['client_secret'],confirmPayment: true)
-    // );
+      paymentSheetParameters: const SetupPaymentSheetParameters(
+        merchantDisplayName: 'My Store ',
+        googlePay: PaymentSheetGooglePay(
+          merchantCountryCode: 'IN',
+          testEnv: true,
+        ),
+      ),
+    );
   }
 }

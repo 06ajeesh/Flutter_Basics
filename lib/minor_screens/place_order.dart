@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:multi_store_app2/minor_screens/payement_screen.dart';
+import 'package:multi_store_app2/minor_screens/payment_screen.dart';
 import 'package:multi_store_app2/widgets/appbar_widgets.dart';
 import 'package:multi_store_app2/widgets/yellow_button.dart';
 import 'package:provider/provider.dart';
@@ -74,7 +74,9 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 4),
+                            horizontal: 16,
+                            vertical: 4,
+                          ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

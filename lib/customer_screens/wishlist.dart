@@ -72,7 +72,10 @@ class EmptyWishList extends StatelessWidget {
         children: [
           Text(
             'Your WishList is Empty',
-            style: TextStyle(fontSize: 22),
+            style: TextStyle(
+              fontSize: 22,
+              fontFamily: 'Acme',
+            ),
           ),
         ],
       ),

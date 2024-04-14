@@ -87,7 +87,7 @@ class _ProductModelState extends State<ProductModel> {
                           ),
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Row(
                               children: [
@@ -100,7 +100,7 @@ class _ProductModelState extends State<ProductModel> {
                                   ),
                                 ),
                                 Text(
-                                  "${widget.products['price'].toStringAsFixed(2)} ",
+                                  "${widget.products['price'].toStringAsFixed(1)} ",
                                   style: discountValue == 0
                                       ? const TextStyle(
                                           color: Colors.red,

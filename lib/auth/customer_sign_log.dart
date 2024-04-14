@@ -26,8 +26,8 @@ class _Customer_Sign_LogState extends State<Customer_Sign_Log> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        toolbarHeight: 90,
         leading: const AppBarBackButton(buttonColor: Colors.black),
+        toolbarHeight: MediaQuery.of(context).size.height * 0.2,
         title: const Text(
           'Customer Section',
           style: TextStyle(

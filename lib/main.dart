@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData.light(),
       debugShowCheckedModeBanner: false,
       routes: {
         '/Welcome_Screen': (context) => const WelcomeScreen(),
