@@ -7,7 +7,7 @@ import 'package:weather_app_task/utilities.dart';
 import 'package:weather_app_task/weatherDetailed.dart';
 
 const openWeatherMapApiKey =
-    '8f613346d0d1b064ac46b27d142ca424'; // Replace with your actual API key
+    'ADD API KEY'; 
 
 class HomePage extends StatefulWidget {
   @override
@@ -152,10 +152,9 @@ class _HomePageState extends State<HomePage> {
                         decoration: InputDecoration(
                           hintText: 'Enter city name',
                           border: const OutlineInputBorder(),
-                          filled: true, // Add this line to enable filling
+                          filled: true,
                           fillColor:
-                              Colors.white, // Set the fill color to white
-                          // You can customize other decoration properties as needed
+                              Colors.white, 
                           focusedBorder: OutlineInputBorder(
                             borderSide:
                                 const BorderSide(color: Colors.black, width: 2.0),
@@ -168,10 +167,9 @@ class _HomePageState extends State<HomePage> {
                           ),
                           contentPadding: const EdgeInsets.symmetric(
                               vertical: 14.0, horizontal: 10.0),
-                          // Adjust the content padding as needed
                         ),
                         style: const TextStyle(
-                            color: Colors.black), // Set text color to black
+                            color: Colors.black), 
                         onChanged: (value) => setState(() => _city = value),
                       ),
                     ),
