@@ -25,10 +25,8 @@ class DetailPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Displaying main weather details using WeatherDetailsPage
-            WeatherDetailsPage(weatherData: weatherData),
 
-            // Displaying additional details
+            WeatherDetailsPage(weatherData: weatherData),
             SizedBox(
               width: size.width * 0.85,
               child: ListView(
@@ -41,7 +39,6 @@ class DetailPage extends StatelessWidget {
                   List<Widget> subtitleWidgets1 = [];
                   List<Widget> subtitleWidgets2 = [];
 
-                  // Formatting value based on its type
                   if (value is String) {
                     subtitleWidgets1.add(Text(value));
                   } else if (value is List) {
@@ -67,12 +64,10 @@ class DetailPage extends StatelessWidget {
                     });
                   }
 
-                  // Ensure both lists have the same length
                   int maxLength = subtitleWidgets1.length > subtitleWidgets2.length
                       ? subtitleWidgets1.length
                       : subtitleWidgets2.length;
 
-                  // Pad shorter list with empty Text widgets if necessary
                   while (subtitleWidgets1.length < maxLength) {
                     subtitleWidgets1.add(Text(''));
                   }
