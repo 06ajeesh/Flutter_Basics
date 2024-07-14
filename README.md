@@ -18,6 +18,24 @@ a sleek chatbot infused with generative AI prowess, seamlessly fused with image 
 ___
 
 
- <img src="https://github.com/06ajeesh/Flutter_Basics/assets/110251010/07072348-f096-41ba-8a61-3065717a836f" width="170" ><div></div>
- <img src="https://github.com/06ajeesh/Flutter_Basics/assets/110251010/3335c737-2b1f-41b4-b307-c744cf1e51a7" width="170" >
-<img src="https://github.com/06ajeesh/Flutter_Basics/assets/110251010/23975a2b-b4e3-4a64-a978-bbcf0e2d1639" width="170">
+
+<div>
+  <img src="https://github.com/user-attachments/assets/ececdeee-e188-43ce-bf26-45e73720bd0f" width="180" >
+ &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://github.com/user-attachments/assets/dcbc5529-2f86-4086-acaa-7fa5e591ac86" width="180" >
+</div>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+<div>
+  <img src="https://github.com/user-attachments/assets/29327f2b-2c94-4446-82cc-8dd87b896175" width="180" >
+</div>
+
+ &nbsp;&nbsp;&nbsp;&nbsp;
+<div>
+  <img src="https://github.com/user-attachments/assets/6a852a6a-88bb-4b12-92f3-28bc4de24359" width="180" >
+ &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://github.com/06ajeesh/Flutter_Basics/assets/110251010/23975a2b-b4e3-4a64-a978-bbcf0e2d1639" width="180" >
+</div>
+
+
+
