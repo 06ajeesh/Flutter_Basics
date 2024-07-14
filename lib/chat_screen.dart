@@ -75,7 +75,7 @@ class _ChatWidgetState extends State<ChatWidget> {
   Widget build(BuildContext context) {
     const textFieldDecoration = InputDecoration(
       contentPadding: EdgeInsets.all(15),
-      hintText: 'Enter a prompt...',
+      hintText: 'Enter prompt...',
       hintStyle: TextStyle(
         color: Colors.white,
         fontWeight: FontWeight.bold,
@@ -86,7 +86,7 @@ class _ChatWidgetState extends State<ChatWidget> {
         ),
         borderSide: BorderSide(
           width: 2,
-          color: Colors.black, // Set the border color here
+          color: Colors.black,
         ),
       ),
       focusedBorder: OutlineInputBorder(
@@ -94,11 +94,11 @@ class _ChatWidgetState extends State<ChatWidget> {
           Radius.circular(12),
         ),
         borderSide: BorderSide(
-          color: Colors.black, // Set the border color here
+          color: Colors.black,
         ),
       ),
     );
-    ;
+
     return Padding(
       padding: const EdgeInsets.all(3.0),
       child: SizedBox(
@@ -325,29 +325,42 @@ class MessageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const Radius rad = Radius.circular(18);
     return Row(
       mainAxisAlignment:
           isFromUser ? MainAxisAlignment.end : MainAxisAlignment.start,
       children: [
         Flexible(
-            child: Container(
-                constraints: BoxConstraints(
-                    maxWidth: MediaQuery.of(context).size.width * 0.6),
-                decoration: BoxDecoration(
-                  color: isFromUser
-                      ? Theme.of(context).colorScheme.primaryContainer
-                      : Theme.of(context).colorScheme.surfaceVariant,
-                  borderRadius: BorderRadius.circular(18),
-                ),
-                padding: const EdgeInsets.symmetric(
-                  vertical: 15,
-                  horizontal: 20,
-                ),
-                margin: const EdgeInsets.only(bottom: 8),
-                child: Column(children: [
-                  if (text case final text?) MarkdownBody(data: text),
-                  if (image case final image?) image,
-                ]))),
+          child: Container(
+            constraints: BoxConstraints(
+                maxWidth: MediaQuery.of(context).size.width * 0.7),
+            decoration: BoxDecoration(
+              color: isFromUser
+                  ? Theme.of(context).colorScheme.primaryContainer
+                  : Theme.of(context).colorScheme.surfaceContainerHighest,
+              borderRadius: isFromUser
+                  ? const BorderRadius.only(
+                      topLeft: rad, topRight: rad, bottomLeft: rad)
+                  : const BorderRadius.only(
+                      topLeft: rad, topRight: rad, bottomRight: rad),
+            ),
+            padding: const EdgeInsets.symmetric(
+              vertical: 15,
+              horizontal: 20,
+            ),
+            margin: const EdgeInsets.only(bottom: 8),
+            child: Column(
+              children: [
+                if (text case final text?)
+                  MarkdownBody(
+                    data: text,
+                    selectable: true,
+                  ),
+                if (image case final image?) image,
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }

@@ -12,16 +12,30 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   int countValue = 1;
+
   Widget sideBar() {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const ListTile(
-          title: Center(
+        DrawerHeader(
+          padding: EdgeInsets.zero,
+          margin: EdgeInsets.zero,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.grey.shade200,
+                Colors.white38,
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              tileMode: TileMode.clamp,
+            ),
+          ),
+          child: const Center(
             child: Text(
-              "Chats",
+              "Chat with me",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
+                fontSize: 20,
                 color: Colors.black,
               ),
             ),
@@ -29,6 +43,7 @@ class _HomePageState extends State<HomePage> {
         ),
         Expanded(
           child: ListView.separated(
+            padding: EdgeInsets.zero,
             itemBuilder: (context, index) {
               return Container(
                 decoration: BoxDecoration(
@@ -42,16 +57,14 @@ class _HomePageState extends State<HomePage> {
                 ),
                 child: InkWell(
                   onTap: () {
-                    setState(() {
-                      Navigator.of(context).pop();
-                    });
+                    Navigator.of(context).pop();
                   },
                   child: ListTile(
                     title: Center(
                       child: Text(
+                        "Chat_${index + 1}",
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
-                        "Chat_${index + 1}",
                       ),
                     ),
                   ),
@@ -64,34 +77,32 @@ class _HomePageState extends State<HomePage> {
             itemCount: countValue,
           ),
         ),
-        Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 10,
-            ),
-            child: ElevatedButton.icon(
-                style: ButtonStyle(elevation: MaterialStateProperty.all(0)),
-                onPressed: () {
-                  _scaffoldKey.currentState!.closeDrawer();
-                  Future.delayed(const Duration(milliseconds: 60))
-                      .whenComplete(() {
-                    _scaffoldKey.currentState!.closeDrawer();
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const SettingsPage(),
-                        ));
-                  });
-                },
-                icon: const Icon(Icons.settings),
-                label: const Text(
-                  "Settings",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                )),
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 10,
           ),
-        )
+          child: ElevatedButton.icon(
+            style: ButtonStyle(elevation: WidgetStateProperty.all(0)),
+            onPressed: () {
+              _scaffoldKey.currentState!.closeDrawer();
+              Future.delayed(const Duration(milliseconds: 60)).whenComplete(() {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SettingsPage(),
+                  ),
+                );
+              });
+            },
+            icon: const Icon(Icons.settings),
+            label: const Text(
+              "Settings",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -102,6 +113,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
+        toolbarHeight: size.height*0.1,
         title: const Text(
           "Chat with me",
           style: TextStyle(
@@ -121,8 +133,9 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             style: const ButtonStyle(
-                shape: MaterialStatePropertyAll(CircleBorder()),
-                backgroundColor: MaterialStatePropertyAll(Colors.transparent)),
+              shape: WidgetStatePropertyAll(CircleBorder()),
+              backgroundColor:WidgetStateColor.transparent,
+            ),
             onPressed: () {
               setState(() {
                 countValue++;
@@ -159,7 +172,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  chatBody(Size size) {
+  Widget chatBody(Size size) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 4,
@@ -215,7 +228,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   child: FadeInImage.memoryNetwork(
                     placeholder: kTransparentImage,
                     image:
-                        'https://images.unsplash.com/photo-1611606063065-ee7946f0787a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    'https://images.unsplash.com/photo-1611606063065-ee7946f0787a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                   ),
                 ),
               ),
