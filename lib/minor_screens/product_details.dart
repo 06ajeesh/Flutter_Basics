@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:multi_store_app2/main_screens/cart.dart';
@@ -13,7 +14,6 @@ import '../models/product_model.dart';
 import '../providers/cart_provider.dart';
 import '../providers/wish_provider.dart';
 import 'full_screen_view.dart';
-import 'package:collection/collection.dart';
 import 'package:badges/badges.dart' as badges;
 
 class ProductDetailsScreen extends StatefulWidget {

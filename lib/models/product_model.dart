@@ -1,11 +1,9 @@
-import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:collection/collection.dart';
 import '../minor_screens/product_details.dart';
 import '../providers/wish_provider.dart';
 
