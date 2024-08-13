@@ -1,10 +1,10 @@
-# money_tracker
+# tic tac toe
 
 A new Flutter money tracker project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a simple  tic tac toe Flutter application.
 
 A few resources to get you started :
 
