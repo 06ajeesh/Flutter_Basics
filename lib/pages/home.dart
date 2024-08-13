@@ -18,7 +18,7 @@ class Home extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: CalculatorBody(),
+      body: const CalculatorBody(),
     );
   }
 }

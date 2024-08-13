@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:basic_calculator/models/calculator_model.dart';
 
 class CalculatorBody extends StatelessWidget {
+  const CalculatorBody({super.key});
+
   Widget _buildButton(String buttonText, Color color, CalculatorModel model) {
     return Expanded(
       child: Padding(
